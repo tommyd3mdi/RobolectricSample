@@ -97,7 +97,7 @@ in between standard targets -->
     </condition>
     <exec executable="date" outputproperty="build.date"/>
 
-    <target name="compile.tests" depends="-compile"
+    <target name="compile.tests" depends="-set-debug-mode,-compile"
             description="compile module source; test classes" unless="skip.tests">
         <mkdir dir="${out.test-classes.absolute.dir}"/>
 
@@ -107,7 +107,7 @@ in between standard targets -->
             <src path="${test.absolute.dir}"/>
             <classpath>
                 <pathelement path="${out.classes.absolute.dir}"/>
-                <path refid="android.target.classpath"/>
+                <path refid="project.target.class.path"/>
                 <fileset dir="${test.external.libs.absolute.dir}" includes="*.jar"/>
                 <fileset dir="${robolectric.sample.external.libs.dir}" includes="*.jar"/>
             </classpath>
@@ -139,7 +139,7 @@ in between standard targets -->
                 <fileset dir="${test.external.libs.absolute.dir}" includes="*.jar"/>
                 <fileset dir="${robolectric.sample.external.libs.dir}" includes="*.jar"/>
 
-                <path refid="android.target.classpath"/>
+                <path refid="project.target.class.path"/>
             </classpath>
         </junit>
         <fail if="junit.failure" message="Unit test(s) failed.  See reports!"/>
