@@ -114,11 +114,7 @@ in between standard targets -->
         </javac>
     </target>
 
-    <target name="clean" description="cleanup module">
-        <!-- dunno how to depend on android's clean, so subant instead -->
-        <subant inheritall="true" buildpath="${sdk.dir}/tools/ant" antfile="build.xml" failonerror="true">
-            <target name="clean"/>
-        </subant>
+    <target name="clean" description="cleanup module" depends="android_rules.clean">
         <delete dir="${out.test-classes.absolute.dir}"/>
         <delete dir="${tmp.dir}"/>
     </target>
